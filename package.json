@@ -1,4 +1,6 @@
 {
+  "name": "ivory",
+  "packageManager": "yarn@3.2.4",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
@@ -24,6 +26,7 @@
     "react-dom": "18.2.0",
     "styled-components": "6.0.0-beta.2",
     "styled-jsx": "5.1.0",
+    "tslib": "^2.4.1",
     "use-count-up": "3.0.1"
   },
   "devDependencies": {
