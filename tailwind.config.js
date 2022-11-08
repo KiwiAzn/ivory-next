@@ -3,11 +3,7 @@ const theme = 'business';
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   relative: true,
-  content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './page/**/*.{js,ts,jsx,tsx}',
-    './ui/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './ui/**/*.{js,ts,jsx,tsx}'],
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
   theme: {
     fontFamily: {
