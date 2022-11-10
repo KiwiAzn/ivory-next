@@ -1,15 +1,21 @@
 import { CreateDiceRoom } from './CreateDiceRoom';
+import { HeroBackground } from './HeroBackground';
 
 export const Hero: React.FC = () => {
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content text-center">
-        <div className="max-w-xl">
-          <h1 className="font-hero text-9xl font-bold">Ivory</h1>
-          <p className="py-6">RPG dice rolling app built for the web</p>
-          <CreateDiceRoom />
+    <>
+      <div className="absolute inset-0">
+        <HeroBackground />
+      </div>
+      <div className="hero min-h-screen bg-base-200">
+        <div className="hero-content text-center">
+          <div className="max-w-xl">
+            <h1 className="font-hero text-9xl font-bold">Ivory</h1>
+            <p className="py-6">RPG dice rolling app built for the web</p>
+            <CreateDiceRoom />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };

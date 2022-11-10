@@ -1,3 +1,5 @@
+import { Hero } from '@/ui/Hero';
+
 export default function Page() {
-  return <div></div>;
+  return <Hero />;
 }
