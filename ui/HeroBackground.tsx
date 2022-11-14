@@ -1,7 +1,8 @@
 'use client';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
 import { Physics, usePlane, useBox } from '@react-three/cannon';
-import React, { useEffect } from 'react';
+import React, { Suspense } from 'react';
+import { TextureLoader } from 'three/src/loaders/TextureLoader';
 
 const getRandomArbitrary = (min: number, max: number) => {
   return Math.random() * (max - min) + min;
@@ -18,23 +19,32 @@ const Plane: React.FC = () => {
 };
 
 const D6: React.FC = () => {
-  const [ref, api] = useBox(() => ({
+  const [ref] = useBox(() => ({
     mass: 1,
     position: [getRandomArbitrary(-5, 5), 10, getRandomArbitrary(-5, 5)],
+    angularVelocity: [
+      getRandomArbitrary(-5, 5),
+      getRandomArbitrary(-5, 5),
+      getRandomArbitrary(-5, 5),
+    ],
   }));
 
-  useEffect(() => {
-    api.angularVelocity.set(
-      getRandomArbitrary(-5, 5),
-      getRandomArbitrary(-5, 5),
-      getRandomArbitrary(-5, 5),
-    );
-  });
+  const texture_1 = useLoader(TextureLoader, 'textures/dice_1.jpeg');
+  const texture_2 = useLoader(TextureLoader, 'textures/dice_6.jpeg');
+  const texture_3 = useLoader(TextureLoader, 'textures/dice_2.jpeg');
+  const texture_4 = useLoader(TextureLoader, 'textures/dice_5.jpeg');
+  const texture_5 = useLoader(TextureLoader, 'textures/dice_3.jpeg');
+  const texture_6 = useLoader(TextureLoader, 'textures/dice_4.jpeg');
 
   return (
     <mesh receiveShadow castShadow ref={ref}>
       <boxGeometry />
-      <meshLambertMaterial color="rgb(125,125,125)" />
+      <meshStandardMaterial map={texture_1} attach="material-0" />
+      <meshStandardMaterial map={texture_2} attach="material-1" />
+      <meshStandardMaterial map={texture_3} attach="material-2" />
+      <meshStandardMaterial map={texture_4} attach="material-3" />
+      <meshStandardMaterial map={texture_5} attach="material-4" />
+      <meshStandardMaterial map={texture_6} attach="material-5" />
     </mesh>
   );
 };
@@ -55,12 +65,14 @@ export const HeroBackground: React.FC = () => (
     />
     <Physics>
       <Plane />
-      <D6 />
-      <D6 />
-      <D6 />
-      <D6 />
-      <D6 />
-      <D6 />
+      <Suspense>
+        <D6 />
+        <D6 />
+        <D6 />
+        <D6 />
+        <D6 />
+        <D6 />
+      </Suspense>
     </Physics>
   </Canvas>
 );
