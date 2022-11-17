@@ -31,7 +31,6 @@ export interface Database {
           id: number
           dice_notation: string | null
           result: number | null
-          user_id: string
           channel_id: number
           inserted_at: string
         }
@@ -39,7 +38,6 @@ export interface Database {
           id?: number
           dice_notation?: string | null
           result?: number | null
-          user_id: string
           channel_id: number
           inserted_at?: string
         }
@@ -47,7 +45,6 @@ export interface Database {
           id?: number
           dice_notation?: string | null
           result?: number | null
-          user_id?: string
           channel_id?: number
           inserted_at?: string
         }
@@ -55,15 +52,15 @@ export interface Database {
       users: {
         Row: {
           id: string
-          username: string | null
+          display_name: string | null
         }
         Insert: {
           id: string
-          username?: string | null
+          display_name?: string | null
         }
         Update: {
           id?: string
-          username?: string | null
+          display_name?: string | null
         }
       }
     }

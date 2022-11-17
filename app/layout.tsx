@@ -1,5 +1,6 @@
 import '@/styles/dist.css';
 import React from 'react';
+import { Providers } from './Providers';
 
 export default function RootLayout({
   children,
@@ -11,7 +12,9 @@ export default function RootLayout({
       <head>
         <title>Ivory Dice</title>
       </head>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

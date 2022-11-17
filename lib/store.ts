@@ -5,7 +5,7 @@ import { Database } from './database.types';
 
 export const supabase = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
-  process.env.NEXT_PUBLIC_SUPABASE_KEY ?? '',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '',
 );
 
 interface DiceRoll {
@@ -39,7 +39,6 @@ export const useStore = ({ channelSlug }: useStoreParams) => {
   useEffect(() => {
     let messageListener: RealtimeChannel;
     const intializeRoom = async () => {
-      console.log('init');
       const channel = (await upsertChannel(channelSlug)) as unknown as Channel;
       setChannelId(channel.id);
 
@@ -53,9 +52,16 @@ export const useStore = ({ channelSlug }: useStoreParams) => {
             table: 'dice_rolls',
             filter: `channel_id=eq.${channel!.id}}`,
           },
-          (payload) => handleNewMessage(payload as unknown as DiceRoll),
+          (payload) => {
+            debugger;
+            console.log(payload);
+            // return handleNewMessage(payload as unknown as DiceRoll);
+          },
         )
         .subscribe();
+
+      const diceRolls = await fetchDiceRolls(channel.id);
+      setDiceRolls(diceRolls);
     };
 
     intializeRoom();
@@ -90,11 +96,14 @@ export const useStore = ({ channelSlug }: useStoreParams) => {
  * @param {number} channelId
  * @param {function} setState Optionally pass in a hook or callback to set the state
  */
-export const fetchMessages = async (channelId: number, setState: Function) => {
+export const fetchDiceRolls = async (
+  channelId: number,
+  setState?: Function,
+) => {
   try {
     let { data } = await supabase
-      .from('messages')
-      .select(`*, author:user_id(*)`)
+      .from('dice_rolls')
+      .select(`*`)
       .eq('channel_id', channelId)
       .order('inserted_at', { ascending: true });
     if (setState) setState(data);
@@ -136,7 +145,7 @@ export const upsertChannel = async (slug: string) => {
       .from('channels')
       .upsert({ slug }, { onConflict: 'slug' })
       .select();
-    return data;
+    return data?.at(0);
   } catch (error) {
     console.log('error', error);
   }
@@ -154,8 +163,8 @@ export const addDiceRoll = async (
 ) => {
   try {
     let { data } = await supabase
-      .from('messages')
-      .insert([{ diceNotatiion: dice_notation, channel_id }]);
+      .from('dice_rolls')
+      .insert([{ dice_notation, channel_id }]);
     return data;
   } catch (error) {
     console.log('error', error);

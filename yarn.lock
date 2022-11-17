@@ -1877,6 +1877,69 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stitches/core@npm:^1.2.8":
+  version: 1.2.8
+  resolution: "@stitches/core@npm:1.2.8"
+  checksum: 3a76a697b1d71ffb212e8b166f923c8f66ef99de93689dd417571f90fbba5692abb9a92220acd102baf5298896f0fdfeaa721da2d61adee1247531a26f67a15f
+  languageName: node
+  linkType: hard
+
+"@stitches/react@npm:^1.2.8":
+  version: 1.2.8
+  resolution: "@stitches/react@npm:1.2.8"
+  peerDependencies:
+    react: ">= 16.3.0"
+  checksum: 029795323cdedb5599ec0636526fc233b2cf41fa9c1f4a704b1f7f457c6170053384a7430afed45e25f73e348d7c391cf1379bc079943cd9cad44302234a5244
+  languageName: node
+  linkType: hard
+
+"@supabase/auth-helpers-nextjs@npm:^0.5.2":
+  version: 0.5.2
+  resolution: "@supabase/auth-helpers-nextjs@npm:0.5.2"
+  dependencies:
+    "@supabase/auth-helpers-shared": 0.2.3
+  peerDependencies:
+    "@supabase/supabase-js": ^2.0.4
+  checksum: 0c200e9fcabaf156e51c21c69c5a92c448ca1de4f33c479ed1cc8816090d1538af9d536a232fdcafbb267c7dbdd0438a419517c08cf3084b7fb54ab45ed16ef0
+  languageName: node
+  linkType: hard
+
+"@supabase/auth-helpers-react@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@supabase/auth-helpers-react@npm:0.3.1"
+  peerDependencies:
+    "@supabase/supabase-js": ^2.0.4
+  checksum: 7974d1f913e95fb331ca84868d8bbee5806a2b381b67a1c7f69da7d2bbd5fe0e005df82572960d4e425ae7e9cdcad684095ae96566e4e2a6132e5de908756c85
+  languageName: node
+  linkType: hard
+
+"@supabase/auth-helpers-shared@npm:0.2.3":
+  version: 0.2.3
+  resolution: "@supabase/auth-helpers-shared@npm:0.2.3"
+  peerDependencies:
+    "@supabase/supabase-js": ^2.0.4
+  checksum: c1fdea7b83d07a5dc87550a1cb784d61f33f5adce2118bac69d8a735bfc9a91aee97e7d53f4833bb1420a11c4675d7b2fcd0294aa508d3ba43688543ee414813
+  languageName: node
+  linkType: hard
+
+"@supabase/auth-ui-react@npm:^0.2.6":
+  version: 0.2.6
+  resolution: "@supabase/auth-ui-react@npm:0.2.6"
+  dependencies:
+    "@stitches/core": ^1.2.8
+    "@stitches/react": ^1.2.8
+    fsevents: ^2.3.2
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.1 || ^18.0.0
+    react-dom: ^16.13.1 || ^17.0.1 || ^18.0.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  checksum: e98cfe6d18c5f7744affd0f6bd5ece1cbac4b28df8ec0ca5ae68131aa6a4787b0e45ed3542ac0993eaf004680b09a739d339e7689ef7f56b452b06d25f5d1abe
+  languageName: node
+  linkType: hard
+
 "@supabase/functions-js@npm:^2.0.0":
   version: 2.0.0
   resolution: "@supabase/functions-js@npm:2.0.0"
@@ -2382,6 +2445,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"asynckit@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "asynckit@npm:0.4.0"
+  checksum: 7b78c451df768adba04e2d02e63e2d0bf3b07adcd6e42b4cf665cb7ce899bedd344c69a1dcbce355b5f972d597b25aaa1c1742b52cffd9caccb22f348114f6be
+  languageName: node
+  linkType: hard
+
 "autoprefixer@npm:^10.4.13":
   version: 10.4.13
   resolution: "autoprefixer@npm:10.4.13"
@@ -2404,6 +2474,17 @@ __metadata:
   version: 4.5.1
   resolution: "axe-core@npm:4.5.1"
   checksum: db90c6b41483e9c3452393933072fe0b8c2221e6d9b96ae0e6a03a4ce1e4c35bec539c92e9b6fcd63c4acf6678ad3c3ca7f5ab1d884210d157867cc54acd4f6a
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "axios@npm:1.1.3"
+  dependencies:
+    follow-redirects: ^1.15.0
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: cab3b17bf6092c9387f7023d699db093cfa23650b56c4422cd474d124b78b2e3b5a520f932c330664a58ab85b867b1c25a95cace475ef72d236888c852b84e6d
   languageName: node
   linkType: hard
 
@@ -2671,6 +2752,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"classnames@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "classnames@npm:2.3.2"
+  checksum: 2c62199789618d95545c872787137262e741f9db13328e216b093eea91c85ef2bfb152c1f9e63027204e2559a006a92eb74147d46c800a9f96297ae1d9f96f4e
+  languageName: node
+  linkType: hard
+
 "clean-stack@npm:^2.0.0":
   version: 2.2.0
   resolution: "clean-stack@npm:2.2.0"
@@ -2761,6 +2849,15 @@ __metadata:
     color-convert: ^2.0.1
     color-string: ^1.9.0
   checksum: 0579629c02c631b426780038da929cca8e8d80a40158b09811a0112a107c62e10e4aad719843b791b1e658ab4e800558f2e87ca4522c8b32349d497ecb6adeb4
+  languageName: node
+  linkType: hard
+
+"combined-stream@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "combined-stream@npm:1.0.8"
+  dependencies:
+    delayed-stream: ~1.0.0
+  checksum: 49fa4aeb4916567e33ea81d088f6584749fc90c7abec76fd516bf1c5aa5c79f3584b5ba3de6b86d26ddd64bae5329c4c7479343250cfe71c75bb366eae53bb7c
   languageName: node
   linkType: hard
 
@@ -2989,6 +3086,13 @@ __metadata:
   version: 1.0.1
   resolution: "defined@npm:1.0.1"
   checksum: b1a852300bdb57f297289b55eafdd0c517afaa3ec8190e78fce91b9d8d0c0369d4505ecbdacfd3d98372e664f4a267d9bd793938d4a8c76209c9d9516fbe2101
+  languageName: node
+  linkType: hard
+
+"delayed-stream@npm:~1.0.0":
+  version: 1.0.0
+  resolution: "delayed-stream@npm:1.0.0"
+  checksum: 46fe6e83e2cb1d85ba50bd52803c68be9bd953282fa7096f51fc29edd5d67ff84ff753c51966061e5ba7cb5e47ef6d36a91924eddb7f3f3483b1c560f77a0020
   languageName: node
   linkType: hard
 
@@ -3589,6 +3693,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.15.0":
+  version: 1.15.2
+  resolution: "follow-redirects@npm:1.15.2"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: faa66059b66358ba65c234c2f2a37fcec029dc22775f35d9ad6abac56003268baf41e55f9ee645957b32c7d9f62baf1f0b906e68267276f54ec4b4c597c2b190
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "form-data@npm:4.0.0"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
+  languageName: node
+  linkType: hard
+
 "fraction.js@npm:^4.2.0":
   version: 4.2.0
   resolution: "fraction.js@npm:4.2.0"
@@ -3619,7 +3744,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@npm:~2.3.2":
+"fsevents@npm:^2.3.2, fsevents@npm:~2.3.2":
   version: 2.3.2
   resolution: "fsevents@npm:2.3.2"
   dependencies:
@@ -3629,7 +3754,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
+"fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
   resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=18f3a7"
   dependencies:
@@ -4197,6 +4322,9 @@ __metadata:
     "@react-three/cannon": ^6.5.0
     "@react-three/drei": ^9.40.0
     "@react-three/fiber": ^8.9.1
+    "@supabase/auth-helpers-nextjs": ^0.5.2
+    "@supabase/auth-helpers-react": ^0.3.1
+    "@supabase/auth-ui-react": ^0.2.6
     "@supabase/supabase-js": ^2.1.0
     "@tailwindcss/typography": ^0.5.8
     "@types/node": 18.0.3
@@ -4204,6 +4332,8 @@ __metadata:
     "@types/react-dom": 18.0.6
     "@types/three": ^0.146.0
     autoprefixer: ^10.4.13
+    axios: ^1.1.3
+    classnames: ^2.3.2
     clsx: 1.2.1
     concurrently: 7.5.0
     daisyui: ^2.38.1
@@ -4225,6 +4355,7 @@ __metadata:
     tslib: ^2.4.1
     typescript: 4.7.4
     use-count-up: 3.0.1
+    uuid: ^9.0.0
   languageName: unknown
   linkType: soft
 
@@ -4488,6 +4619,22 @@ __metadata:
     braces: ^3.0.2
     picomatch: ^2.3.1
   checksum: 02a17b671c06e8fefeeb6ef996119c1e597c942e632a21ef589154f23898c9c6a9858526246abb14f8bca6e77734aa9dcf65476fca47cedfb80d9577d52843fc
+  languageName: node
+  linkType: hard
+
+"mime-db@npm:1.52.0":
+  version: 1.52.0
+  resolution: "mime-db@npm:1.52.0"
+  checksum: 0d99a03585f8b39d68182803b12ac601d9c01abfa28ec56204fa330bc9f3d1c5e14beb049bafadb3dbdf646dfb94b87e24d4ec7b31b7279ef906a8ea9b6a513f
+  languageName: node
+  linkType: hard
+
+"mime-types@npm:^2.1.12":
+  version: 2.1.35
+  resolution: "mime-types@npm:2.1.35"
+  dependencies:
+    mime-db: 1.52.0
+  checksum: 89a5b7f1def9f3af5dad6496c5ed50191ae4331cc5389d7c521c8ad28d5fdad2d06fd81baf38fed813dc4e46bb55c8145bb0ff406330818c9cf712fb2e9b3836
   languageName: node
   linkType: hard
 
@@ -5157,7 +5304,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.0, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.0, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -5165,6 +5312,13 @@ __metadata:
     object-assign: ^4.1.1
     react-is: ^16.13.1
   checksum: c056d3f1c057cb7ff8344c645450e14f088a915d078dcda795041765047fa080d38e5d626560ccaac94a4e16e3aa15f3557c1a9a8d1174530955e992c675e459
+  languageName: node
+  linkType: hard
+
+"proxy-from-env@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "proxy-from-env@npm:1.1.0"
+  checksum: ed7fcc2ba0a33404958e34d95d18638249a68c430e30fcb6c478497d72739ba64ce9810a24f53a7d921d0c065e5b78e3822759800698167256b04659366ca4d4
   languageName: node
   linkType: hard
 
@@ -6286,6 +6440,15 @@ __metadata:
   version: 3.10.0
   resolution: "utility-types@npm:3.10.0"
   checksum: 8f274415c6196ab62883b8bd98c9d2f8829b58016e4269aaa1ebd84184ac5dda7dc2ca45800c0d5e0e0650966ba063bf9a412aaeaea6850ca4440a391283d5c8
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "uuid@npm:9.0.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
   languageName: node
   linkType: hard
 

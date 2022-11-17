@@ -1,7 +1,7 @@
 -- USERS
 create table public.users (
-  id          uuid not null primary key, -- UUID from auth.users
-  username    text
+  id            uuid not null primary key, -- UUID from auth.users
+  display_name  text
 );
 comment on table public.users is 'Profile data for each user.';
 comment on column public.users.id is 'References the internal Supabase Auth user.';
@@ -21,7 +21,7 @@ create table public.dice_rolls (
   inserted_at   timestamp with time zone default timezone('utc'::text, now()) not null,
   dice_notation text,
   result        numeric,
-  user_id       uuid references public.users not null,
+  -- user_id       uuid references public.users not null,
   channel_id    bigint references public.channels on delete cascade not null
 );
 comment on table public.dice_rolls is 'Individual dice_rolls sent by each user.';
@@ -30,21 +30,6 @@ comment on table public.dice_rolls is 'Individual dice_rolls sent by each user.'
 alter table public.users replica identity full; 
 alter table public.channels replica identity full; 
 alter table public.dice_rolls replica identity full;
-
--- inserts a row into public.users and assigns roles
-create function public.handle_new_user() 
-returns trigger as $$
-begin
-  insert into public.users (id, username)
-  values (new.id, new.email);
-  return new;
-end;
-$$ language plpgsql security definer;
-
--- trigger the function every time a user is created
-create trigger on_auth_user_created
-  after insert on auth.users
-  for each row execute procedure public.handle_new_user();
 
 /**
  * REALTIME SUBSCRIPTIONS
