@@ -2,6 +2,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import classNames from 'classnames';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export const AccountWizard: React.FC = () => {
   return <InitialPage />;
@@ -29,6 +30,7 @@ const createGuestAccount = async (displayName: string) => {
 };
 
 const ContinueAsGuest: React.FC = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -38,7 +40,7 @@ const ContinueAsGuest: React.FC = () => {
   const onSubmit: SubmitHandler<Inputs> = async ({ displayName }) => {
     try {
       await createGuestAccount(displayName);
-      window.location.reload();
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
