@@ -21,7 +21,7 @@ create table public.dice_rolls (
   inserted_at   timestamp with time zone default timezone('utc'::text, now()) not null,
   dice_notation text,
   result        numeric,
-  -- user_id       uuid references public.users not null,
+  user_id       uuid references public.users not null,
   channel_id    bigint references public.channels on delete cascade not null
 );
 comment on table public.dice_rolls is 'Individual dice_rolls sent by each user.';
