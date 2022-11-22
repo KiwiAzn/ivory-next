@@ -159,16 +159,17 @@ export const upsertChannel = async (slug: string) => {
  * Insert a new message into the DB
  * @param {string} diceRoll The message text
  * @param {number} channel_id
- * @param {number} user_id The author
+ * @param {string} user_id The author
  */
 export const addDiceRoll = async (
   dice_notation: string,
   channel_id: number,
+  user_id: string,
 ) => {
   try {
     let { data } = await supabase
       .from('dice_rolls')
-      .insert([{ dice_notation, channel_id }]);
+      .insert({ dice_notation, channel_id, user_id });
     return data;
   } catch (error) {
     console.log('error', error);

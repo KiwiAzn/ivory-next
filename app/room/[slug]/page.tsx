@@ -32,6 +32,7 @@ export default async function Page({ params }) {
   }
 
   // Add current user to channel
+
   await supabaseClient.from('channel_members').upsert(
     {
       channel_id: channel!.id,
@@ -45,7 +46,7 @@ export default async function Page({ params }) {
   return (
     <>
       <DiceRolls channelSlug={params.slug} />
-      <RollDice channelSlug={params.slug} />
+      <RollDice channelId={channel!.id} userId={user!.id} />
     </>
   );
 }

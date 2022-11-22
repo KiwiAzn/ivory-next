@@ -1,8 +1,7 @@
 'use client';
 
 import { addDiceRoll } from '@/lib/store';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
-import React, { useEffect, useState } from 'react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 interface Inputs {
@@ -10,20 +9,27 @@ interface Inputs {
 }
 
 export interface RollDiceProps {
-  channelSlug: string;
+  channelId: number;
+  userId: string;
 }
 
-export const RollDice: React.FC<RollDiceProps> = ({ channelSlug }) => {
+export const RollDice: React.FC<RollDiceProps> = ({ channelId, userId }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const [channelId] = useState<number | undefined>();
+  const supabaseClient = useSupabaseClient();
 
-  const onSubmit: SubmitHandler<Inputs> = ({ diceNotation }) => {
-    channelId && addDiceRoll(diceNotation, channelId);
+  const onSubmit: SubmitHandler<Inputs> = async ({ diceNotation }) => {
+    const result = await supabaseClient.from('dice_rolls').insert({
+      dice_notation: diceNotation,
+      channel_id: channelId,
+      user_id: userId,
+    });
+
+    console.log(result);
   };
 
   return (
