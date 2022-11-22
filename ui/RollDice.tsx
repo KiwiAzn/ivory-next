@@ -22,13 +22,11 @@ export const RollDice: React.FC<RollDiceProps> = ({ channelId, userId }) => {
   const supabaseClient = useSupabaseClient();
 
   const onSubmit: SubmitHandler<Inputs> = async ({ diceNotation }) => {
-    const result = await supabaseClient.from('dice_rolls').insert({
+    await supabaseClient.from('dice_rolls').insert({
       dice_notation: diceNotation,
       channel_id: channelId,
       user_id: userId,
     });
-
-    console.log(result);
   };
 
   return (

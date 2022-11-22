@@ -55,8 +55,18 @@ create policy "Allow individual insert access" on public.channel_members for
 insert with check (auth.uid() = user_id);
 -- create policy "Allow authorized delete access" on public.channels for delete using ( authorize('channels.delete', auth.uid()) );
 -- create policy "Allow logged-in read access" on public.dice_rolls for select using ( auth.role() = 'authenticated' );
-create policy "Allow individual read access" on public.dice_rolls for
-select using (auth.role() = 'authenticated');
+-- create policy "Allow individual read access" on public.dice_rolls for
+-- select using (true);
+create policy "Allow individual read access to channels the user belongs to" on public.dice_rolls for
+select using (
+    auth.uid() = user_id
+    and channel_id in (
+      select channel_id
+      from public.channel_members
+      where public.channel_members.channel_id = channel_id
+        and public.channel_members.user_id = user_id
+    )
+  );
 create policy "Allow individual insert access" on public.dice_rolls for
 insert with check (
     auth.uid() = user_id
@@ -87,7 +97,6 @@ after
 insert on auth.users for each row execute procedure public.handle_new_user();
 -- Send "previous data" on change 
 alter table public.users replica identity full;
-alter table public.channels replica identity full;
 alter table public.dice_rolls replica identity full;
 /**
  * REALTIME SUBSCRIPTIONS
@@ -99,9 +108,7 @@ drop publication if exists supabase_realtime;
 -- re-create the publication but don't enable it for any tables
 create publication supabase_realtime;
 commit;
--- add tables to the publication
-alter publication supabase_realtime
-add table public.channels;
+-- add tables to the publicationhttp://localhost:3000/room/zxcvbn
 alter publication supabase_realtime
 add table public.dice_rolls;
 alter publication supabase_realtime

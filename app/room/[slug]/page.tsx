@@ -45,7 +45,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <DiceRolls channelSlug={params.slug} />
+      <DiceRolls channelId={channel!.id} />
       <RollDice channelId={channel!.id} userId={user!.id} />
     </>
   );
