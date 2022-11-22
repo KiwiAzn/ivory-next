@@ -53,7 +53,6 @@ export const useStore = ({ channelSlug }: useStoreParams) => {
             filter: `channel_id=eq.${channel!.id}}`,
           },
           (payload) => {
-            debugger;
             console.log(payload);
             // return handleNewMessage(payload as unknown as DiceRoll);
           },
@@ -141,10 +140,15 @@ export const addChannel = async (slug: string) => {
  */
 export const upsertChannel = async (slug: string) => {
   try {
+    let { data: user, error: userError } = await supabase.auth.getUser();
+
+    console.log(user, userError);
+
     let { data, error } = await supabase
       .from('channels')
-      .upsert({ slug }, { onConflict: 'slug' })
+      .upsert({ slug, created_by: user?.uid }, { onConflict: 'slug' })
       .select();
+
     return data?.at(0);
   } catch (error) {
     console.log('error', error);

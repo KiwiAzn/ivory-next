@@ -1,10 +1,9 @@
 'use client';
 
-import { useStore } from '@/lib/store';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 export const DiceRolls: React.FC<{ channelSlug: string }> = ({
   channelSlug,
 }) => {
-  const store = useStore({ channelSlug });
-  return <p>{JSON.stringify(store)}</p>;
+  return <p>DiceRolls</p>;
 };
