@@ -1,6 +1,5 @@
 'use client';
 
-import { addDiceRoll } from '@/lib/store';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
