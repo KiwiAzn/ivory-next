@@ -11,17 +11,14 @@ export interface Database {
     Tables: {
       channel_members: {
         Row: {
-          id: number
           channel_id: number
           user_id: string
         }
         Insert: {
-          id?: number
           channel_id: number
           user_id: string
         }
         Update: {
-          id?: number
           channel_id?: number
           user_id?: string
         }
@@ -49,24 +46,27 @@ export interface Database {
       dice_rolls: {
         Row: {
           id: number
-          dice_notation: string | null
-          result: number | null
+          notation: string | null
+          breakdown: string | null
+          total: number | null
           user_id: string
           channel_id: number
           inserted_at: string
         }
         Insert: {
           id?: number
-          dice_notation?: string | null
-          result?: number | null
+          notation?: string | null
+          breakdown?: string | null
+          total?: number | null
           user_id: string
           channel_id: number
           inserted_at?: string
         }
         Update: {
           id?: number
-          dice_notation?: string | null
-          result?: number | null
+          notation?: string | null
+          breakdown?: string | null
+          total?: number | null
           user_id?: string
           channel_id?: number
           inserted_at?: string

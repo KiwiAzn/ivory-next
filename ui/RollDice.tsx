@@ -4,7 +4,7 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 interface Inputs {
-  diceNotation: string;
+  notation: string;
 }
 
 export interface RollDiceProps {
@@ -19,15 +19,7 @@ export const RollDice: React.FC<RollDiceProps> = ({ channelId, userId }) => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const supabaseClient = useSupabaseClient();
-
-  const onSubmit: SubmitHandler<Inputs> = async ({ diceNotation }) => {
-    await supabaseClient.from('dice_rolls').insert({
-      dice_notation: diceNotation,
-      channel_id: channelId,
-      user_id: userId,
-    });
-  };
+  const onSubmit: SubmitHandler<Inputs> = async ({ notation }) => {};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -35,7 +27,7 @@ export const RollDice: React.FC<RollDiceProps> = ({ channelId, userId }) => {
         <input
           type="text"
           className="input-bordered input"
-          {...register('diceNotation', { required: true })}
+          {...register('notation', { required: true })}
         />
         <button className="btn-primary btn-active btn">Roll</button>
       </div>

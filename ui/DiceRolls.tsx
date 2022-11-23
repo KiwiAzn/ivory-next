@@ -1,10 +1,15 @@
 'use client';
 
+import { Database } from '@/lib/database.types';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const DiceRolls: React.FC<{ channelId: number }> = ({ channelId }) => {
   const supabaseClient = useSupabaseClient();
+
+  const [diceRolls, setDiceRolls] = useState<
+    Array<Database['public']['Tables']['dice_rolls']['Row']>
+  >([]);
 
   useEffect(() => {
     supabaseClient
@@ -18,11 +23,14 @@ export const DiceRolls: React.FC<{ channelId: number }> = ({ channelId }) => {
           filter: `channel_id=eq.${channelId}`,
         },
         (payload) => {
-          console.log('Change received!', payload);
+          setDiceRolls((currentValue) => [
+            payload.new as Database['public']['Tables']['dice_rolls']['Row'],
+            ...currentValue,
+          ]);
         },
       )
       .subscribe();
   });
 
-  return <p>DiceRolls</p>;
+  return <p>{JSON.stringify(diceRolls)}</p>;
 };
