@@ -1,5 +1,6 @@
 import { Database } from '@/lib/database.types';
 import '@/styles/dist.css';
+import { Navbar } from '@/ui/Navbar';
 import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { cookies, headers } from 'next/headers';
 import React from 'react';
@@ -33,6 +34,7 @@ export default async function RootLayout({
         <title>Ivory Dice</title>
       </head>
       <body>
+        <Navbar />
         <Providers initialSession={session}>{children}</Providers>
       </body>
     </html>

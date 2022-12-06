@@ -1806,6 +1806,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@heroicons/react@npm:^2.0.13":
+  version: 2.0.13
+  resolution: "@heroicons/react@npm:2.0.13"
+  peerDependencies:
+    react: ">= 16"
+  checksum: f03c393a129cb468d103e4334815df956d7afa9d0756ee09b33e9396214d39b786523a5e650709de73c68ba085facda3fe01984ff137bcc16c85d4ed2498e663
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.6":
   version: 0.11.7
   resolution: "@humanwhocodes/config-array@npm:0.11.7"
@@ -10719,6 +10728,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.20.2
     "@dice-roller/rpg-dice-roller": ^5.2.1
+    "@heroicons/react": ^2.0.13
     "@mdx-js/react": ^1.6.22
     "@react-three/cannon": ^6.5.0
     "@react-three/drei": ^9.40.0

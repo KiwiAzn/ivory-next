@@ -51,12 +51,13 @@ const D6: React.FC = () => {
 
 export const HeroBackground: React.FC = () => (
   <Canvas
+    className="-z-10"
     shadows
     dpr={[1, 2]}
     gl={{ alpha: false }}
     camera={{ near: 1, position: [-5, 5, 5] }}
   >
-    <color attach="background" args={[28 / 255, 28 / 255, 28 / 255]} />
+    <color attach="background" args={[33 / 255, 33 / 255, 33 / 255]} />
     <ambientLight />
     <directionalLight
       position={[10, 10, 10]}
