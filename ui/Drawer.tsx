@@ -1,20 +1,44 @@
-'use client';
+import { Database } from '@/lib/database.types';
+import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { cookies, headers } from 'next/headers';
 import { FC, ReactNode } from 'react';
+import { drawerId } from './drawerId';
+import UserIcon from '@heroicons/react/24/outline/UserIcon';
 
-export const drawerId = 'drawer';
+/* @ts-expect-error Server Component */
+export const DrawerSide: FC = async () => {
+  const supabaseClient = createServerComponentSupabaseClient<Database>({
+    headers,
+    cookies,
+  });
 
-export const DrawerSide: FC = () => {
+  const {
+    data: { user: authenticatedUser },
+  } = await supabaseClient.auth.getUser();
+
+  const { data: user } = await supabaseClient
+    .from('users')
+    .select()
+    .eq('id', authenticatedUser?.id)
+    .single();
+
   return (
     <div className="drawer-side">
       <label htmlFor={drawerId} className="drawer-overlay" />
-      <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-        <li>
-          <a>Sidebar Item 1</a>
-        </li>
-        <li>
-          <a>Sidebar Item 2</a>
-        </li>
-      </ul>
+      <div className="menu p-4 w-80 bg-base-100 text-base-content">
+        <span className="text-base p-4">
+          Signed in as{' '}
+          <span className="text-base font-bold">{user?.display_name}</span>
+        </span>
+        <ul>
+          <li>
+            <a>
+              <UserIcon className="h-5 w-5" />
+              Profile
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

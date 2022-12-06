@@ -4,7 +4,7 @@ import { RollDice } from '@/ui/RollDice';
 import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { cookies, headers } from 'next/headers';
 
-//@ts-ignore
+/* @ts-expect-error Server Component */
 export default async function Page({ params }) {
   const supabaseClient = createServerComponentSupabaseClient<Database>({
     headers,
