@@ -19,7 +19,7 @@ export const DiceRoll: React.FC<DiceRollProps> = ({
 
   return (
     <li className="p-4 grid grid-cols-2 gap-4">
-      <div className="text-base">
+      <div className="text-base self-center">
         {user.display_name} rolled {notation}
       </div>
       <div className="flex flex-row justify-end">

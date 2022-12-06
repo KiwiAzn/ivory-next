@@ -41,7 +41,7 @@ export const DiceRolls: React.FC<DiceRollsProps> = ({
   });
 
   return (
-    <ol>
+    <ol className="flex flex-col gap-4">
       {diceRolls.map(({ id, total, notation, breakdown, user_id }) => (
         <DiceRollUI
           key={id}

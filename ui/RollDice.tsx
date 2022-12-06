@@ -24,13 +24,14 @@ export const RollDice: React.FC<RollDiceProps> = ({ channelName }) => {
   };
 
   return (
-    <div className="card bg-neutral shadow-xl my-8">
+    <div className="card bg-neutral shadow-xl my-16">
       <div className="card-body">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input-group">
             <input
               type="text"
               className="input-bordered input flex-grow"
+              placeholder="3d6+2"
               {...register('notation', { required: true })}
             />
             <button className="btn-primary btn-active btn">Roll</button>
