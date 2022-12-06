@@ -11,42 +11,22 @@ export default async function Page({ params }) {
     cookies,
   });
 
-  const {
-    data: { user },
-  } = await supabaseClient.auth.getUser();
-
-  let { data: channel, error } = await supabaseClient
+  let { data: channel } = await supabaseClient
     .from('channels')
     .select()
     .eq('slug', params.slug)
     .single();
 
-  if (!channel) {
-    const { data: newChannel, error: newChannelError } = await supabaseClient
-      .from('channels')
-      .insert({ slug: params.slug, created_by: user!.id })
-      .select()
-      .single();
-
-    channel = newChannel;
-  }
-
-  // Add current user to channel
-
-  await supabaseClient.from('channel_members').upsert(
-    {
-      channel_id: channel!.id,
-      user_id: user!.id,
-    },
-    {
-      ignoreDuplicates: true,
-    },
-  );
+  const { data: diceRolls } = await supabaseClient
+    .from('dice_rolls')
+    .select()
+    .eq('channel_id', channel?.id)
+    .order('inserted_at', { ascending: false });
 
   return (
     <>
-      <DiceRolls channelId={channel!.id} />
-      <RollDice channelId={channel!.id} userId={user!.id} />
+      <RollDice channelName={params.slug} />
+      <DiceRolls channelId={channel!.id} diceRolls={diceRolls ?? []} />
     </>
   );
 }

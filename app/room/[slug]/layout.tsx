@@ -1,32 +1,66 @@
 import '@/styles/dist.css';
 import React from 'react';
 import { AccountWizard } from '@/ui/AccountWizard';
-import { createClient } from '@supabase/supabase-js';
 import { Database } from '@/lib/database.types';
-import { cookies } from 'next/headers';
-
-const supabaseAdmin = createClient<Database>(
-  process.env.SUPABASE_URL ?? '',
-  process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
-);
+import { Providers } from './Providers';
+import { cookies, headers } from 'next/headers';
+import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { User } from '@/lib/types';
 
 export default async function Layout({
-  children,
   params,
+  children,
 }: {
   children: React.ReactNode;
   params: any;
 }) {
-  const nextCookies = cookies();
-  const supabaseAuthToken = nextCookies.get('supabase-auth-token')?.value;
+  const supabaseClient = createServerComponentSupabaseClient<Database>({
+    headers,
+    cookies,
+  });
 
-  if (!supabaseAuthToken) {
+  const {
+    data: { user },
+  } = await supabaseClient.auth.getUser();
+
+  if (!user) {
     return <AccountWizard />;
   }
 
-  // supabase-auth-token has the jwt as the first element
-  const jwt = JSON.parse(supabaseAuthToken)[0];
-  const { data } = await supabaseAdmin.auth.getUser(jwt);
+  let { data: channel, error } = await supabaseClient
+    .from('channels')
+    .select()
+    .eq('slug', params.slug)
+    .single();
 
-  return !data.user ? <AccountWizard /> : children;
+  if (!channel) {
+    const { data: newChannel } = await supabaseClient
+      .from('channels')
+      .insert({ slug: params.slug, created_by: user!.id })
+      .select()
+      .single();
+
+    channel = newChannel;
+  }
+
+  // Add current user to channel
+  const result = await supabaseClient.from('channel_members').upsert(
+    {
+      channel_id: channel!.id,
+      user_id: user!.id,
+    },
+    {
+      ignoreDuplicates: true,
+    },
+  );
+
+  // Get all users for the channel
+  const usersResult = await supabaseClient
+    .from('channel_members')
+    .select('user:users(*)')
+    .eq('channel_id', channel?.id);
+
+  const users = usersResult.data?.map(({ user }) => user) as Array<User>;
+
+  return <Providers users={users}>{children}</Providers>;
 }

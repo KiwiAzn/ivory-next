@@ -1,6 +1,7 @@
 'use client';
 
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import axios from 'axios';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 interface Inputs {
@@ -8,18 +9,19 @@ interface Inputs {
 }
 
 export interface RollDiceProps {
-  channelId: number;
-  userId: string;
+  channelName: string;
 }
 
-export const RollDice: React.FC<RollDiceProps> = ({ channelId, userId }) => {
+export const RollDice: React.FC<RollDiceProps> = ({ channelName }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = async ({ notation }) => {};
+  const onSubmit: SubmitHandler<Inputs> = async ({ notation }) => {
+    await axios.post(`/api/room/${channelName}/roll-dice`, { notation });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

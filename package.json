@@ -34,6 +34,7 @@
     "concurrently": "^7.6.0",
     "daisyui": "^2.42.0",
     "encoding": "^0.1.13",
+    "jotai": "^1.11.0",
     "next": "^13.0.5",
     "postcss-import": "^15.0.0",
     "react": "^18.2.0",

@@ -5,6 +5,7 @@ const nextConfig = {
   experimental: {
     // Required:
     appDir: true,
+    esmExternals: true,
   },
 };
 

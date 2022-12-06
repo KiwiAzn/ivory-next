@@ -32,6 +32,11 @@ create table public.dice_rolls (
   channel_id bigint references public.channels on delete cascade not null
 );
 comment on table public.dice_rolls is 'Individual dice_rolls sent by each user.';
+create or replace function get_channels_for_authenticated_user() returns setof bigint language sql security definer
+set search_path = public stable as $$
+select channel_id
+from channel_members
+where user_id = auth.uid() $$;
 -- Secure the tables
 alter table public.users enable row level security;
 alter table public.channels enable row level security;
@@ -60,12 +65,16 @@ insert with check (auth.uid() = user_id);
 -- select using (true);
 create policy "Allow individual read access to channels the user belongs to" on public.dice_rolls for
 select using (
-    auth.uid() = user_id
-    and channel_id in (
+    channel_id in (
       select channel_id
       from public.channel_members
-      where public.channel_members.channel_id = channel_id
-        and public.channel_members.user_id = user_id
+      where public.channel_members.user_id = user_id
+    )
+  );
+create policy "Allow individual read access to channel_members that also belong to the user" on channel_members for
+select using (
+    channel_id in (
+      select get_channels_for_authenticated_user()
     )
   );
 -- create policy "Allow individual insert access" on public.dice_rolls for

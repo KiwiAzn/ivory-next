@@ -15,9 +15,9 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method === 'POST') {
-    const { diceNotation } = req.body;
+    const { notation } = req.body;
 
-    if (!diceNotation) return res.status(400).end();
+    if (!notation) return res.status(400).end();
 
     const supabaseServerClient = createServerSupabaseClient<Database>({
       req,
@@ -44,12 +44,12 @@ export default async function handler(
       return res.status(400).end();
     }
 
-    const { total, output } = new DiceRoll(diceNotation);
+    const { total, output } = new DiceRoll(notation);
 
     const breakdown = output.replace(/^.*:/i, '').replace(/=.*$/, '').trim();
 
     await supabaseAdmin.from('dice_rolls').insert({
-      notation: diceNotation,
+      notation,
       channel_id: channel.id,
       total,
       breakdown,
