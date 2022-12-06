@@ -24,15 +24,19 @@ export const RollDice: React.FC<RollDiceProps> = ({ channelName }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="input-group">
-        <input
-          type="text"
-          className="input-bordered input"
-          {...register('notation', { required: true })}
-        />
-        <button className="btn-primary btn-active btn">Roll</button>
+    <div className="card bg-neutral shadow-xl my-8">
+      <div className="card-body">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="input-group">
+            <input
+              type="text"
+              className="input-bordered input flex-grow"
+              {...register('notation', { required: true })}
+            />
+            <button className="btn-primary btn-active btn">Roll</button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   );
 };

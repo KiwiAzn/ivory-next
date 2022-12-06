@@ -41,7 +41,7 @@ export const DiceRolls: React.FC<DiceRollsProps> = ({
   });
 
   return (
-    <div>
+    <ol>
       {diceRolls.map(({ id, total, notation, breakdown, user_id }) => (
         <DiceRollUI
           key={id}
@@ -51,6 +51,6 @@ export const DiceRolls: React.FC<DiceRollsProps> = ({
           userId={user_id}
         />
       ))}
-    </div>
+    </ol>
   );
 };

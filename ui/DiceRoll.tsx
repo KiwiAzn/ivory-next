@@ -18,17 +18,18 @@ export const DiceRoll: React.FC<DiceRollProps> = ({
   const [user] = useAtom(userAtom(userId));
 
   return (
-    <div>
-      <div>
-        <p className="text-base">{user.display_name}</p>
+    <li className="p-4 grid grid-cols-2 gap-4">
+      <div className="text-base">
+        {user.display_name} rolled {notation}
       </div>
-      <div>
-        <p className="text-base">{notation}</p>
-        <p className="text-base">{total}</p>
+      <div className="flex flex-row justify-end">
+        <div
+          className="flex-none font-bold text-2xl self-center tooltip"
+          data-tip={breakdown}
+        >
+          {total}
+        </div>
       </div>
-      <div>
-        <p className="text-base">{breakdown}</p>
-      </div>
-    </div>
+    </li>
   );
 };

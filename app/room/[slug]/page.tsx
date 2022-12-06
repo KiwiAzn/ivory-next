@@ -24,9 +24,9 @@ export default async function Page({ params }) {
     .order('inserted_at', { ascending: false });
 
   return (
-    <>
+    <div className="md:max-lg:container md:mx-auto max-w-screen-md	">
       <RollDice channelName={params.slug} />
       <DiceRolls channelId={channel!.id} diceRolls={diceRolls ?? []} />
-    </>
+    </div>
   );
 }
