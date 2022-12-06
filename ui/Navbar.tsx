@@ -3,19 +3,20 @@ import classNames from 'classnames';
 import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 import { Bars3Icon } from '@heroicons/react/24/solid';
+import { drawerId } from './Drawer';
 
 export const Navbar: FC = () => {
   const pathname = usePathname();
+  const isHero = pathname === '/';
   const isNotHero = pathname !== '/';
 
   return (
     <>
-      {/*Duplicate div is created to ensure that there is enough space for the navbar in the document layout*/}
-      <div className="navbar" />
       <div
         className={classNames(
-          'navbar  fixed top-0 z-10',
+          'navbar',
           isNotHero && 'bg-neutral shadow-xl',
+          isHero && 'fixed top-0 z-10',
         )}
       >
         <div className="flex-1">
@@ -24,9 +25,9 @@ export const Navbar: FC = () => {
           )}
         </div>
         <div className="flex-none">
-          <button className="btn btn-square btn-ghost">
+          <label htmlFor={drawerId} className="btn btn-square btn-ghost">
             <Bars3Icon />
-          </button>
+          </label>
         </div>
       </div>
     </>

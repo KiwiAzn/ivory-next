@@ -1,5 +1,11 @@
 import { Database } from '@/lib/database.types';
 import '@/styles/dist.css';
+import {
+  DrawerContent,
+  DrawerRoot,
+  DrawerSide,
+  DrawerToggle,
+} from '@/ui/Drawer';
 import { Navbar } from '@/ui/Navbar';
 import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { cookies, headers } from 'next/headers';
@@ -34,8 +40,14 @@ export default async function RootLayout({
         <title>Ivory Dice</title>
       </head>
       <body>
-        <Navbar />
-        <Providers initialSession={session}>{children}</Providers>
+        <DrawerRoot>
+          <DrawerToggle />
+          <DrawerContent>
+            <Navbar />
+            <Providers initialSession={session}>{children}</Providers>
+          </DrawerContent>
+          <DrawerSide />
+        </DrawerRoot>
       </body>
     </html>
   );
