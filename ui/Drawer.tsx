@@ -26,7 +26,7 @@ export const DrawerSide: FC = async () => {
     <div className="drawer-side">
       <label htmlFor={drawerId} className="drawer-overlay" />
       <div className="menu p-4 w-80 bg-base-100 text-base-content">
-        <span className="text-base p-4">
+        <span className="text-base p-4 ">
           Signed in as{' '}
           <span className="text-base font-bold">{user?.display_name}</span>
         </span>

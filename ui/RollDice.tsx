@@ -24,7 +24,7 @@ export const RollDice: React.FC<RollDiceProps> = ({ channelName }) => {
   };
 
   return (
-    <div className="card bg-neutral shadow-xl my-16">
+    <div className="card bg-neutral shadow-xl">
       <div className="card-body">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input-group">

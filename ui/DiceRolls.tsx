@@ -15,7 +15,7 @@ export const DiceRolls: React.FC<DiceRollsProps> = ({
   channelId,
   diceRolls: initialDiceRolls = [],
 }) => {
-  const supabaseClient = useSupabaseClient();
+  const supabaseClient = useSupabaseClient<Database>();
 
   const [diceRolls, setDiceRolls] = useState<Array<DiceRoll>>(initialDiceRolls);
 

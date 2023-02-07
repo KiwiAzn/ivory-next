@@ -1,4 +1,5 @@
 import { Database } from '@/lib/database.types';
+import { ChannelMembers } from '@/ui/ChannelMembers';
 import { DiceRolls } from '@/ui/DiceRolls';
 import { RollDice } from '@/ui/RollDice';
 import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-nextjs';
@@ -24,9 +25,18 @@ export default async function Page({ params }) {
     .order('inserted_at', { ascending: false });
 
   return (
-    <div className="md:max-lg:container md:mx-auto max-w-screen-md	">
-      <RollDice channelName={params.slug} />
-      <DiceRolls channelId={channel!.id} diceRolls={diceRolls ?? []} />
-    </div>
+    <>
+      <div className="lg:max-xl:container lg:mx-auto max-w-screen-lg">
+        <div className="grid grid-cols-3 gap-8 mt-16">
+          <div className="col-span-1">
+            <ChannelMembers channelId={channel!.id} />
+          </div>
+          <div className="col-span-2">
+            <RollDice channelName={params.slug} />
+            <DiceRolls channelId={channel!.id} diceRolls={diceRolls ?? []} />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

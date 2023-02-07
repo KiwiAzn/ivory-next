@@ -108,6 +108,7 @@ insert on auth.users for each row execute procedure public.handle_new_user();
 -- Send "previous data" on change 
 alter table public.users replica identity full;
 alter table public.dice_rolls replica identity full;
+alter table public.channel_members replica identity full;
 /**
  * REALTIME SUBSCRIPTIONS
  * Only allow realtime listening on public tables.
@@ -118,8 +119,10 @@ drop publication if exists supabase_realtime;
 -- re-create the publication but don't enable it for any tables
 create publication supabase_realtime;
 commit;
--- add tables to the publicationhttp://localhost:3000/room/zxcvbn
+-- add tables to the publication
 alter publication supabase_realtime
 add table public.dice_rolls;
 alter publication supabase_realtime
 add table public.users;
+alter publication supabase_realtime
+add table public.channel_members;

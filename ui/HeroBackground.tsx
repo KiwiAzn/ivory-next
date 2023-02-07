@@ -3,6 +3,7 @@ import { Canvas, useLoader } from '@react-three/fiber';
 import { Physics, usePlane, useBox } from '@react-three/cannon';
 import React, { Suspense } from 'react';
 import { TextureLoader } from 'three/src/loaders/TextureLoader';
+import { OrbitControls } from '@react-three/drei';
 
 const getRandomArbitrary = (min: number, max: number) => {
   return Math.random() * (max - min) + min;
@@ -64,6 +65,7 @@ export const HeroBackground: React.FC = () => (
       castShadow
       shadow-mapSize={[2048, 2048]}
     />
+    <OrbitControls autoRotate />
     <Physics>
       <Plane />
       <Suspense>

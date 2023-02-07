@@ -62,5 +62,9 @@ export default async function Layout({
 
   const users = usersResult.data?.map(({ user }) => user) as Array<User>;
 
-  return <Providers users={users}>{children}</Providers>;
+  return (
+    <Providers channelId={channel!.id} users={users}>
+      {children}
+    </Providers>
+  );
 }
