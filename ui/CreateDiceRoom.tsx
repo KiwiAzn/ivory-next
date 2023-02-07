@@ -2,17 +2,28 @@
 
 import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { generateSlug } from 'random-word-slugs';
 
 interface Inputs {
   roomName: string;
 }
 
 export const CreateDiceRoom: React.FC = () => {
+  const slug = generateSlug(3, {
+    format: 'camel',
+  });
+
+  const formattedSlug = slug[0].toUpperCase() + slug.slice(1);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    defaultValues: {
+      roomName: formattedSlug,
+    },
+  });
 
   const router = useRouter();
 
